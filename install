@@ -1,0 +1,18 @@
+#!/bin/bash
+
+platform='unknown'
+unamestr=`uname`
+
+if [[ "$unamestr" == 'Linux' ]]; then
+  echo "Installing to /usr/local/bin/colma"
+  sudo cp ColmaUI.py /usr/local/bin/colma
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+  sudo rm -R /Applications/ColmaUI.app
+  python setup.py py2app
+  cp -R dist/ColmaUI.app /Applications
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  sudo rm -R /Applications/ColmaUI.app
+  python setup.py py2app
+  cp -R dist/ColmaUI.app /Applications
+fi
+
